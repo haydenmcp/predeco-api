@@ -4,7 +4,7 @@
 const express = require('express');
 const graphqlHttp = require('express-graphql');
 const { buildSchema } = require('graphql');
-const config = require('configuration.json');
+const config = require('./configuration.json');
 
 const schema = buildSchema(`
   type Query {
@@ -13,6 +13,8 @@ const schema = buildSchema(`
 `);
 
 const rootValue = { hello: () => 'Hello World' };
+
+console.log('Configuration ', config);
 
 const app = express();
 app.use('/graphql', graphqlHttp({
