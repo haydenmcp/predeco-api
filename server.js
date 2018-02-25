@@ -1,6 +1,10 @@
+// TODO Use strict mode
+// 'use strict';
+
 const express = require('express');
 const graphqlHttp = require('express-graphql');
 const { buildSchema } = require('graphql');
+const config = require('configuration.json');
 
 const schema = buildSchema(`
   type Query {
@@ -8,7 +12,7 @@ const schema = buildSchema(`
   }
 `);
 
-const rootValue = { hello: () => 'hello world' };
+const rootValue = { hello: () => 'Hello World' };
 
 const app = express();
 app.use('/graphql', graphqlHttp({
@@ -17,4 +21,5 @@ app.use('/graphql', graphqlHttp({
   graphiql: true
 }));
 
-app.listen(4000, () => console.log('Browse to http://localhost:4000/graphql'));
+app.listen(config.host.port, () =>
+  console.log(`Browse to http://${config.host.ip}:${config.host.port}/graphql`));
