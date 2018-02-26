@@ -1,9 +1,11 @@
 // TODO Use strict mode
 // 'use strict';
 
+const { buildSchema } = require('graphql');
+const cors = require('cors');
 const express = require('express');
 const graphqlHttp = require('express-graphql');
-const { buildSchema } = require('graphql');
+
 const { host } = require('./configuration.json');
 
 const schema = buildSchema(`
@@ -15,6 +17,7 @@ const schema = buildSchema(`
 const rootValue = { hello: () => 'Hello World' };
 
 const app = express();
+app.use(cors());
 app.use('/graphql', graphqlHttp({
   schema,
   rootValue,
