@@ -17,11 +17,11 @@ const schema = buildSchema(`
   },
 
   type Query {
-    points: [Datum]
+    circles: [Datum]
   }
 `);
 
-const rootValue = { points: () => [{
+const rootValue = { circles: () => [{
   x: 30,
   y: 30,
   radius: 20,
