@@ -17,11 +17,11 @@ const schema = buildSchema(`
   },
 
   type Query {
-    items: [Datum]
+    points: [Datum]
   }
 `);
 
-const rootValue = { items: () => [{
+const rootValue = { points: () => [{
   x: 30,
   y: 30,
   radius: 20,
@@ -29,18 +29,33 @@ const rootValue = { items: () => [{
 },{
   x: 70,
   y: 70,
-  radius: 20,
+  radius: 30,
   color: 'green'
 },{
   x: 110,
   y: 100,
-  radius: 20,
+  radius: 5,
   color: 'blue'
 },{
   x: 50,
   y: 50,
-  radius: 20,
+  radius: 10,
+  color: 'purple'
+},{
+  x: 205,
+  y: 100,
+  radius: 10,
+  color: 'magenta'
+},{
+  x: 55,
+  y: 300,
+  radius: 15,
   color: 'yellow'
+},{
+  x: 400,
+  y: 250,
+  radius: 50,
+  color: 'grey'
 }]};
 
 const app = express();
