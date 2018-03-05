@@ -9,12 +9,39 @@ const graphqlHttp = require('express-graphql');
 const { host } = require('./configuration.json');
 
 const schema = buildSchema(`
+  type Datum {
+    x: Int,
+    y: Int,
+    radius: Int,
+    color: String
+  },
+
   type Query {
-    hello: String
+    items: [Datum]
   }
 `);
 
-const rootValue = { hello: () => 'Hello World' };
+const rootValue = { items: () => [{
+  x: 30,
+  y: 30,
+  radius: 20,
+  color: 'red'
+},{
+  x: 70,
+  y: 70,
+  radius: 20,
+  color: 'green'
+},{
+  x: 110,
+  y: 100,
+  radius: 20,
+  color: 'blue'
+},{
+  x: 50,
+  y: 50,
+  radius: 20,
+  color: 'yellow'
+}]};
 
 const app = express();
 app.use(cors());
