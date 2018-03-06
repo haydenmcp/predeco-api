@@ -1,12 +1,18 @@
-// TODO Use strict mode
-// 'use strict';
-
 const { buildSchema } = require('graphql');
 const cors = require('cors');
 const express = require('express');
 const graphqlHttp = require('express-graphql');
+const jwt = require('express-jwt');
+const { host, graphql } = require('./configuration.json');
 
-const { host } = require('./configuration.json');
+
+
+// Service clients
+// TODO auth client will provide express middleware that automatically fetches
+// auth information from the service and appends the information to the graphql
+// context if valid. Otherwise the middleware will redirect or something to force
+// sign in.
+const { auth } = require('predeco-auth-client');
 
 const schema = buildSchema(`
   type Circle {
@@ -89,11 +95,14 @@ const rootValue = {
 
 const app = express();
 app.use(cors());
+app.use(jwt({
+  secret: 'magical'
+}));
+app.use(authenticate());
 app.use('/graphql', graphqlHttp({
   schema,
   rootValue,
-  graphiql: true
+  graphiql: (graphql || {}).graphiql || false
 }));
 
-app.listen(host.port, () =>
-  console.log(`Browse to http://${host.ip}:${host.port}/graphql`));
+app.listen(host.port, () => console.log(`Browse to http://${host.ip}:${host.port}/graphql`));
