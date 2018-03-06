@@ -12,7 +12,7 @@ const { host, graphql } = require('./configuration.json');
 // auth information from the service and appends the information to the graphql
 // context if valid. Otherwise the middleware will redirect or something to force
 // sign in.
-const { auth } = require('predeco-auth-client');
+//  const { auth } = require('predeco-auth-client');
 
 const schema = buildSchema(`
   type Circle {
@@ -98,7 +98,7 @@ app.use(cors());
 app.use(jwt({
   secret: 'magical'
 }));
-app.use(authenticate());
+// app.use(authenticate());
 app.use('/graphql', graphqlHttp({
   schema,
   rootValue,

@@ -4,6 +4,7 @@
   "description": "Initial implementation.",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon --exec node serve.js",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {
