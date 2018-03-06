@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const graphqlHttp = require('express-graphql');
 const jwt = require('express-jwt');
-const { host, graphql } = require('./configuration.json');
+const { host, graphql } = require('./config/server.json');
 
 
 
@@ -95,9 +95,9 @@ const rootValue = {
 
 const app = express();
 app.use(cors());
-app.use(jwt({
-  secret: 'magical'
-}));
+// app.use(jwt({
+//   secret: 'magical'
+// }));
 // app.use(authenticate());
 app.use('/graphql', graphqlHttp({
   schema,

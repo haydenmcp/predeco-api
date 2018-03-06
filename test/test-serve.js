@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const request = require('request');
-const { host } = require('../configuration.json');
+const { host } = require('../config/server.json');
 
 describe('graphql services', () => {
   // TODO Modify tests to actually cover required cases.
