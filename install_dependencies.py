@@ -76,10 +76,12 @@ def main():
     git_repos = ( )
 
     npm_packages = (
-        "graphql",
+        "auth0-js",
         "express",
         "express-jwt",
         "express-graphql",
+        "graphql",
+        "jwks-rsa",
         "nodemon",
         "request",
         "mocha",
