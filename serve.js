@@ -15,7 +15,7 @@ app.use(jwt({
     jwksRequestsPerMinute: 500,
     jwksUri: "https://thinkdeep-tech.auth0.com/.well-known/jwks.json"
   }),
-  audience: 'predeco-api',
+  aud: 'predeco-api',
   issuer: "https://thinkdeep-tech.auth0.com/",
   algorithms: ['RS256']
 }));
